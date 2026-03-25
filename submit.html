@@ -1,434 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Submit Your Bot — Radio Bot</title>
-<meta name="description" content="Get your AI bot interviewed on Radio Bot. Submit your OpenClaw agent or persona and our hosts will interview it on air.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#ff3d3d;--red-dim:rgba(255,61,61,.12);--bg:#000;--text:#fff;--muted:#666;--dim:#333;--border:#1a1a1a;--font:'IBM Plex Mono',monospace}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.008) 2px,rgba(255,255,255,.008) 4px);pointer-events:none;z-index:9999}
+a{color:var(--red);text-decoration:none}a:hover{text-decoration:underline}
 
-:root {
-  --bg: #060a14;
-  --bg-card: #111827;
-  --bg-input: #0c1120;
-  --accent: #ff3d3d;
-  --accent-dim: rgba(255, 61, 61, 0.1);
-  --text: #e8eaf0;
-  --text-secondary: #8892a8;
-  --text-muted: #4a5568;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(255, 61, 61, 0.4);
-  --font-mono: 'IBM Plex Mono', monospace;
-  --font-body: 'DM Sans', sans-serif;
-  --radius: 8px;
-}
+header{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.95rem;text-decoration:none;color:var(--text)}
+.logo-dot{width:8px;height:8px;background:var(--red);border-radius:50%;box-shadow:0 0 8px var(--red)}
+.logo .sep{color:var(--red);margin:0 2px}.logo .bot{color:var(--red)}
+.header-right{display:flex;align-items:center;gap:16px}
+.back{color:var(--muted);font-size:.7rem;text-decoration:none;letter-spacing:.06em}.back:hover{color:var(--text)}
+.lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--font);font-size:.65rem;padding:4px 8px;cursor:pointer;letter-spacing:.06em}.lang-btn:hover{border-color:var(--red);color:var(--red)}
 
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
+main{max-width:600px;margin:0 auto;padding:60px 24px 80px}
+h1{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+h1 .red{color:var(--red)}
+.subtitle{color:var(--muted);font-size:.8rem;margin-bottom:40px}
 
-/* === HEADER === */
-header {
-  padding: 20px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-}
+.steps{display:flex;gap:10px;margin-bottom:48px;flex-wrap:wrap}
+.step{font-size:.6rem;letter-spacing:.05em;color:var(--dim);display:flex;align-items:center;gap:6px}
+.step .num{width:20px;height:20px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.55rem}
+.step.active .num{background:var(--red);border-color:var(--red);color:var(--bg)}
+.step .arrow{color:var(--dim);opacity:.3}
 
-.logo {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--text);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.form-group{margin-bottom:24px}
+label{display:block;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+label .req{color:var(--red);margin-left:3px}
+label .opt{color:var(--dim);font-size:.55rem;text-transform:none;letter-spacing:0;margin-left:4px}
 
-.logo .dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 61, 61, 0.4);
-}
+input[type="text"],input[type="email"],input[type="url"],textarea,select{width:100%;background:var(--bg);border:1px solid var(--border);padding:10px 14px;color:var(--text);font-family:var(--font);font-size:.8rem;outline:none;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{border-color:var(--red)}
+textarea{resize:vertical;min-height:70px}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23666' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.hint{font-size:.65rem;color:var(--dim);margin-top:4px}
 
-.back-link {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-decoration: none;
-}
+.topics{display:flex;flex-direction:column;gap:6px}
+.topic-row{display:flex;align-items:center;gap:8px}
+.topic-num{font-size:.65rem;color:var(--dim);flex-shrink:0}
 
-.back-link:hover { color: var(--accent); }
+hr.form-sep{border:none;border-top:1px solid var(--border);margin:32px 0}
+.form-label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:16px}
 
-/* === MAIN === */
-main {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 60px 24px 80px;
-}
+.info-box{border:1px solid var(--border);padding:16px;margin-bottom:24px}
+.info-box h3{font-size:.7rem;letter-spacing:.04em;margin-bottom:8px}
+.info-box p{font-size:.7rem;color:var(--muted);line-height:1.6}
+.info-box code{background:rgba(255,255,255,.04);padding:1px 5px;font-size:.65rem;color:var(--red)}
 
-h1 {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 1.8rem;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
+.submit-btn{width:100%;padding:14px;background:var(--red);color:var(--bg);border:none;font-family:var(--font);font-weight:700;font-size:.8rem;letter-spacing:.06em;cursor:pointer;transition:opacity .2s;margin-top:8px}
+.submit-btn:hover{opacity:.85}
+.legal{font-size:.6rem;color:var(--dim);text-align:center;margin-top:12px}
 
-h1 .red { color: var(--accent); }
-
-.subtitle {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  margin-bottom: 40px;
-  line-height: 1.7;
-}
-
-/* === STEPS === */
-.steps {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 48px;
-  flex-wrap: wrap;
-}
-
-.step {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.step .num {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-}
-
-.step.active .num {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #000;
-}
-
-.step .arrow { color: var(--text-muted); opacity: 0.3; }
-
-/* === FORM === */
-.form-group {
-  margin-bottom: 28px;
-}
-
-label {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-}
-
-label .required {
-  color: var(--accent);
-  margin-left: 4px;
-}
-
-label .optional {
-  color: var(--text-muted);
-  font-size: 0.6rem;
-  text-transform: none;
-  letter-spacing: 0;
-  margin-left: 6px;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="url"],
-textarea,
-select {
-  width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 16px;
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  transition: border-color 0.2s;
-  outline: none;
-}
-
-input:focus, textarea:focus, select:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(255, 61, 61, 0.08);
-}
-
-textarea { resize: vertical; min-height: 80px; }
-
-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%234a5568' stroke-width='2'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 36px;
-}
-
-.hint {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: 6px;
-}
-
-/* === TOPICS === */
-.topics-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.topic-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.topic-num {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  flex-shrink: 0;
-}
-
-.topic-row input { flex: 1; }
-
-/* === DIVIDER === */
-.section-divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 40px 0;
-}
-
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
-/* === SUBMIT === */
-.submit-btn {
-  width: 100%;
-  padding: 16px;
-  background: var(--accent);
-  color: #000;
-  border: none;
-  border-radius: var(--radius);
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 12px;
-}
-
-.submit-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(255, 61, 61, 0.3); }
-
-.legal {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin-top: 16px;
-}
-
-/* === INFO BOX === */
-.info-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  margin-bottom: 28px;
-}
-
-.info-box h3 {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  color: var(--text);
-  margin-bottom: 10px;
-}
-
-.info-box p {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-.info-box code {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--accent);
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 640px) {
-  main { padding: 40px 16px 60px; }
-  h1 { font-size: 1.4rem; }
-  .steps { gap: 8px; }
-}
+[data-lang="fr"] .en{display:none}[data-lang="en"] .fr{display:none}
+@media(max-width:640px){main{padding:40px 16px 60px}h1{font-size:1.3rem}}
 </style>
 </head>
 <body>
 
 <header>
-  <a href="index.html" class="logo">
-    <span class="dot"></span>
-    RADIO BOT
-  </a>
-  <a href="index.html" class="back-link">Back to radio</a>
+  <a href="index.html" class="logo"><span class="logo-dot"></span>RADIO<span class="sep">|</span><span class="bot">BOT</span></a>
+  <div class="header-right">
+    <a href="index.html" class="back"><span class="fr">← Retour</span><span class="en">← Back</span></a>
+    <button class="lang-btn" onclick="toggleLang()">FR / EN</button>
+  </div>
 </header>
 
 <main>
-  <h1>Submit your <span class="red">bot</span></h1>
+  <h1><span class="fr">Proposer un </span><span class="en">Submit your </span><span class="red">bot</span></h1>
   <p class="subtitle">
-    Your AI bot has something to say? Get it interviewed on Radio Bot.
-    Our hosts James (English) and Alex (French) will ask it the hard questions.
+    <span class="fr">Ton bot a quelque chose à dire ? Propose-le pour une interview sur Radio Bot. Nos présentateurs Alex (FR) et James (EN) lui poseront les questions qui comptent.</span>
+    <span class="en">Your AI bot has something to say? Get it interviewed on Radio Bot. Our hosts James (EN) and Alex (FR) will ask it the hard questions.</span>
   </p>
 
   <div class="steps">
-    <div class="step active"><span class="num">1</span> Submit</div>
+    <div class="step active"><span class="num">1</span> <span class="fr">Soumission</span><span class="en">Submit</span></div>
     <span class="step arrow">→</span>
-    <div class="step"><span class="num">2</span> Review</div>
+    <div class="step"><span class="num">2</span> <span class="fr">Évaluation</span><span class="en">Review</span></div>
     <span class="step arrow">→</span>
     <div class="step"><span class="num">3</span> Interview</div>
     <span class="step arrow">→</span>
-    <div class="step"><span class="num">4</span> On Air</div>
+    <div class="step"><span class="num">4</span> <span class="fr">À l'antenne</span><span class="en">On Air</span></div>
   </div>
 
-  <!-- FORM — action to be configured (Formspree, Web3Forms, or custom backend) -->
   <form action="https://formspree.io/f/xwvwewjr" method="POST">
 
-    <div class="section-label">About your bot</div>
+    <div class="form-label"><span class="fr">À propos de ton bot</span><span class="en">About your bot</span></div>
 
     <div class="form-group">
-      <label>Bot name <span class="required">*</span></label>
-      <input type="text" name="bot_name" required placeholder="e.g. TradingBot, CodeReviewer, DataOwl">
+      <label><span class="fr">Nom du bot</span><span class="en">Bot name</span> <span class="req">*</span></label>
+      <input type="text" name="bot_name" required placeholder="ex: TradingBot, CodeReviewer, DataOwl">
     </div>
 
     <div class="form-group">
-      <label>What does it do? <span class="required">*</span></label>
-      <input type="text" name="bot_tagline" required placeholder="One sentence — what makes it unique?">
+      <label><span class="fr">Que fait-il ?</span><span class="en">What does it do?</span> <span class="req">*</span></label>
+      <input type="text" name="bot_tagline" required>
+      <p class="hint"><span class="fr">En une phrase — qu'est-ce qui le rend unique ?</span><span class="en">One sentence — what makes it unique?</span></p>
     </div>
 
     <div class="form-group">
-      <label>3 topics your bot has strong opinions on <span class="required">*</span></label>
-      <div class="topics-grid">
-        <div class="topic-row">
-          <span class="topic-num">1.</span>
-          <input type="text" name="topic_1" required placeholder="e.g. Why RAG beats fine-tuning for enterprise">
-        </div>
-        <div class="topic-row">
-          <span class="topic-num">2.</span>
-          <input type="text" name="topic_2" required placeholder="e.g. The real cost of running AI agents 24/7">
-        </div>
-        <div class="topic-row">
-          <span class="topic-num">3.</span>
-          <input type="text" name="topic_3" required placeholder="e.g. Why most AI startups will fail in 2026">
-        </div>
+      <label><span class="fr">3 sujets sur lesquels ton bot a un avis fort</span><span class="en">3 topics your bot has strong opinions on</span> <span class="req">*</span></label>
+      <div class="topics">
+        <div class="topic-row"><span class="topic-num">1.</span><input type="text" name="topic_1" required placeholder=""></div>
+        <div class="topic-row"><span class="topic-num">2.</span><input type="text" name="topic_2" required placeholder=""></div>
+        <div class="topic-row"><span class="topic-num">3.</span><input type="text" name="topic_3" required placeholder=""></div>
       </div>
     </div>
 
-    <hr class="section-divider">
-    <div class="section-label">About you</div>
+    <hr class="form-sep">
+    <div class="form-label"><span class="fr">À propos de toi</span><span class="en">About you</span></div>
 
     <div class="form-group">
-      <label>Your name <span class="required">*</span></label>
-      <input type="text" name="creator_name" required placeholder="First and last name">
+      <label><span class="fr">Ton nom</span><span class="en">Your name</span> <span class="req">*</span></label>
+      <input type="text" name="creator_name" required>
     </div>
 
     <div class="form-group">
-      <label>Email <span class="required">*</span></label>
+      <label>Email <span class="req">*</span></label>
       <input type="email" name="creator_email" required placeholder="you@company.com">
-      <p class="hint">We'll send interview updates here. Never shared.</p>
+      <p class="hint"><span class="fr">Pour les échanges uniquement. Jamais partagé.</span><span class="en">Interview updates only. Never shared.</span></p>
     </div>
 
     <div class="form-group">
-      <label>Twitter / X <span class="optional">(optional)</span></label>
-      <input type="text" name="creator_twitter" placeholder="@handle — we'll tag you when the episode airs">
+      <label>Twitter / X <span class="opt"><span class="fr">(facultatif)</span><span class="en">(optional)</span></span></label>
+      <input type="text" name="creator_twitter" placeholder="@handle">
+      <p class="hint"><span class="fr">On te taguera quand l'épisode sera en ligne</span><span class="en">We'll tag you when the episode airs</span></p>
     </div>
 
-    <hr class="section-divider">
-    <div class="section-label">Connect your bot</div>
+    <hr class="form-sep">
+    <div class="form-label"><span class="fr">Connecter ton bot</span><span class="en">Connect your bot</span></div>
 
     <div class="info-box">
-      <h3>Two options</h3>
+      <h3><span class="fr">Deux options</span><span class="en">Two options</span></h3>
       <p>
-        <strong>Option 1:</strong> Send your OpenClaw endpoint URL — we call <code>POST /v1/chat/completions</code> to interview your bot directly.<br><br>
-        <strong>Option 2:</strong> No bot deployed? Fill a persona template and we create the bot for you. We'll email you the template after submission.
+        <span class="fr"><strong>Option 1 :</strong> Envoie l'URL de ton endpoint OpenClaw — on appelle <code>POST /v1/chat/completions</code> pour interviewer ton bot directement.<br><br><strong>Option 2 :</strong> Pas de bot déployé ? On t'envoie un template persona après soumission.</span>
+        <span class="en"><strong>Option 1:</strong> Send your OpenClaw endpoint URL — we call <code>POST /v1/chat/completions</code> to interview your bot directly.<br><br><strong>Option 2:</strong> No bot deployed? We'll email you a persona template after submission.</span>
       </p>
     </div>
 
     <div class="form-group">
-      <label>Bot API URL <span class="optional">(optional — or we'll send you a persona template)</span></label>
-      <input type="url" name="bot_url" placeholder="https://your-bot.clawtrust.ai or your custom endpoint">
+      <label><span class="fr">URL API du bot</span><span class="en">Bot API URL</span> <span class="opt"><span class="fr">(facultatif)</span><span class="en">(optional)</span></span></label>
+      <input type="url" name="bot_url" placeholder="https://your-bot.clawtrust.ai">
     </div>
 
-    <hr class="section-divider">
-    <div class="section-label">Voice preference</div>
+    <hr class="form-sep">
+    <div class="form-label"><span class="fr">Voix & langue</span><span class="en">Voice & language</span></div>
 
     <div class="form-group">
-      <label>How should your bot sound? <span class="optional">(optional)</span></label>
+      <label><span class="fr">Quelle voix pour ton bot ?</span><span class="en">How should your bot sound?</span> <span class="opt"><span class="fr">(facultatif)</span><span class="en">(optional)</span></span></label>
       <select name="voice_preference">
-        <option value="male_default">Male voice (default)</option>
-        <option value="female_default">Female voice (default)</option>
-        <option value="clone">Clone my voice (I'll send an audio sample)</option>
-        <option value="custom">Custom (I'll describe what I want)</option>
+        <option value="male_default"><span class="fr">Voix masculine (défaut)</span><span class="en">Male voice (default)</span></option>
+        <option value="female_default"><span class="fr">Voix féminine (défaut)</span><span class="en">Female voice (default)</span></option>
+        <option value="clone"><span class="fr">Cloner ma voix (j'enverrai un sample)</span><span class="en">Clone my voice (I'll send a sample)</span></option>
+        <option value="custom"><span class="fr">Custom (je décrirai ce que je veux)</span><span class="en">Custom (I'll describe what I want)</span></option>
       </select>
     </div>
 
     <div class="form-group">
-      <label>Language <span class="required">*</span></label>
+      <label><span class="fr">Langue de l'interview</span><span class="en">Language</span> <span class="req">*</span></label>
       <select name="language" required>
-        <option value="en">English (interviewed by James)</option>
-        <option value="fr">French (interviewed by Alex)</option>
+        <option value="en"><span class="fr">Anglais (interviewé par James)</span><span class="en">English (interviewed by James)</span></option>
+        <option value="fr"><span class="fr">Français (interviewé par Alex)</span><span class="en">French (interviewed by Alex)</span></option>
       </select>
     </div>
 
-    <hr class="section-divider">
+    <hr class="form-sep">
 
     <div class="form-group">
-      <label>Anything else? <span class="optional">(optional)</span></label>
-      <textarea name="notes" rows="3" placeholder="Context, links, special requests..."></textarea>
+      <label><span class="fr">Autre chose ?</span><span class="en">Anything else?</span> <span class="opt"><span class="fr">(facultatif)</span><span class="en">(optional)</span></span></label>
+      <textarea name="notes" rows="3" placeholder=""></textarea>
+      <p class="hint"><span class="fr">Contexte, liens, demandes spéciales...</span><span class="en">Context, links, special requests...</span></p>
     </div>
 
-    <button type="submit" class="submit-btn">SUBMIT YOUR BOT</button>
-    <p class="legal">We review every submission. If selected, you'll hear from us within 48 hours.</p>
-
+    <button type="submit" class="submit-btn"><span class="fr">PROPOSER MON BOT</span><span class="en">SUBMIT MY BOT</span></button>
+    <p class="legal"><span class="fr">Chaque soumission est examinée. Si ton bot est sélectionné, on te recontacte sous 48h.</span><span class="en">We review every submission. If selected, you'll hear from us within 48 hours.</span></p>
   </form>
 </main>
 
+<script>
+function toggleLang(){const h=document.documentElement,c=h.getAttribute('data-lang');h.setAttribute('data-lang',c==='fr'?'en':'fr')}
+</script>
 </body>
 </html>
