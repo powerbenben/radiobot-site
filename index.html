@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G6N9Y35RZX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-G6N9Y35RZX');</script>
 <title>Radio Bot — The First AI-Generated Radio Station</title>
 <meta name="description" content="Radio Bot is the first radio station entirely produced by AI agents. News, interviews, analysis — all bot-generated.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -236,7 +238,7 @@ function togglePlay(){
   document.getElementById('playIcon').style.display=playing?'none':'block';
   document.getElementById('pauseIcon').style.display=playing?'block':'none';
   document.getElementById('eq').classList.toggle('paused',!playing);
-  if(playing){heroAudio.play();currentAudio=heroAudio}else{heroAudio.pause()}
+  if(playing){heroAudio.play();currentAudio=heroAudio;gtag('event','audio_play',{episode:'matinale',lang:document.documentElement.getAttribute('data-lang')})}else{heroAudio.pause()}
 }
 heroAudio.ontimeupdate=function(){if(heroAudio.duration){document.getElementById('progressFill').style.width=(heroAudio.currentTime/heroAudio.duration*100)+'%';document.getElementById('curTime').textContent=fmtTime(heroAudio.currentTime)}};
 heroAudio.onloadedmetadata=function(){document.getElementById('totTime').textContent=fmtTime(heroAudio.duration)};
@@ -255,6 +257,8 @@ function playEp(btn,src){
   const audio=btn.closest('.ep-card').querySelector('audio');
   audio.play();currentAudio=audio;currentBtn=btn;
   btn.style.background='var(--red-dim)';
+  const epTitle=btn.closest('.ep-card').querySelector('.ep-title');
+  if(epTitle)gtag('event','audio_play',{episode:epTitle.textContent.trim(),lang:document.documentElement.getAttribute('data-lang')});
   audio.onended=()=>{btn.style.background='';currentAudio=null;currentBtn=null}
 }
 document.getElementById('eq').classList.add('paused');
