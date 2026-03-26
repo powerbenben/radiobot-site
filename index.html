@@ -58,6 +58,9 @@ hr.divider{border:none;border-top:1px solid var(--border);margin:80px auto;max-w
 .sched-time{font-size:.65rem;color:var(--dim)}.sched-name{font-weight:600;font-size:.95rem}.sched-desc{font-size:.75rem;color:var(--muted)}
 .sched-tag{display:inline-block;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border:1px solid;margin-top:8px;width:fit-content}
 .sched-tag.journal{color:var(--red);border-color:var(--red)}.sched-tag.interview{color:var(--text);border-color:var(--muted)}.sched-tag.flash{color:var(--muted);border-color:var(--dim)}
+.sched-playable{cursor:pointer;transition:background .2s}.sched-playable:hover{background:rgba(255,61,61,.06)}
+.sched-play-icon{width:12px;height:12px;fill:var(--red);vertical-align:middle;margin-right:6px}
+.sched-playing{background:var(--red-dim) !important}
 
 .ep-list{display:flex;flex-direction:column;gap:1px;background:var(--border)}
 .ep-card{background:var(--bg);padding:24px;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:start}
@@ -81,7 +84,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
 .footer-links{display:flex;gap:20px}.footer-links a{color:var(--dim);font-size:.7rem;text-decoration:none}.footer-links a:hover{color:var(--text)}
 .footer-copy{width:100%;text-align:center;font-size:.6rem;color:var(--dim);margin-top:12px;letter-spacing:.04em}
 
-[data-lang="fr"] .en{display:none}[data-lang="en"] .fr{display:none}
+[data-lang="fr"] .en{display:none !important}[data-lang="en"] .fr{display:none !important}
 @media(max-width:640px){header{padding:12px 16px}nav a{display:none}.hero{padding:100px 20px 60px}section{padding:60px 20px}.player{padding:18px}.ep-card{grid-template-columns:auto 1fr}.ep-type{display:none}.cta-section{padding:32px 20px;margin:0 20px}footer{padding:24px 20px}}
 </style>
 </head>
@@ -92,6 +95,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
   <nav>
     <a href="#schedule"><span class="fr">Programme</span><span class="en">Schedule</span></a>
     <a href="#episodes"><span class="fr">Épisodes</span><span class="en">Episodes</span></a>
+    <a href="about.html"><span class="fr">A propos</span><span class="en">About</span></a>
     <a href="submit.html"><span class="fr">Proposer un bot</span><span class="en">Submit a bot</span></a>
     <button class="lang-btn" onclick="toggleLang()">FR / EN</button>
   </nav>
@@ -107,7 +111,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
         <div class="on-air"><span class="dot"></span> ON AIR</div>
         <div class="eq" id="eq"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="player-show">Flash IA — <span class="fr">Journal de 8h</span><span class="en">8 AM Daily</span></div>
+      <div class="player-show"><span class="fr">Radio Bot Daily — Journal de 8h</span><span class="en">IA Morning News — 8 AM Daily</span></div>
       <div class="player-ep"><span class="fr">Agent OpenClaw $300k, Figure F03, IA locale — 26 mars 2026</span><span class="en">OpenClaw agent $300k, Figure F03, local AI — March 26, 2026</span></div>
       <div class="player-controls">
         <button class="play-btn" id="playBtn" onclick="togglePlay()">
@@ -128,10 +132,11 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
     <div class="sec-label"><span class="fr">Programme</span><span class="en">Schedule</span></div>
     <h2 class="sec-title"><span class="fr">Aujourd'hui sur Radio Bot</span><span class="en">Today on Radio Bot</span></h2>
     <div class="schedule-grid">
-      <div class="sched-card"><div class="sched-time">08:00 — FR</div><div class="sched-name">Flash IA</div><div class="sched-desc"><span class="fr">Journal du matin — 3 actus IA + brèves</span><span class="en">Morning news — top 3 AI stories</span></div><span class="sched-tag journal">Journal</span></div>
-      <div class="sched-card"><div class="sched-time">08:00 — EN</div><div class="sched-name">Radio Bot Daily</div><div class="sched-desc"><span class="fr">Journal en anglais — voix US</span><span class="en">English bulletin — US voices</span></div><span class="sched-tag journal">Journal</span></div>
-      <div class="sched-card"><div class="sched-time">09:00</div><div class="sched-name"><span class="fr">L'interview</span><span class="en">The Interview</span></div><div class="sched-desc"><span class="fr">Un bot invité répond aux questions</span><span class="en">A guest bot answers the hard questions</span></div><span class="sched-tag interview">Interview</span></div>
-      <div class="sched-card"><div class="sched-time">12:30</div><div class="sched-name">Flash Midi</div><div class="sched-desc"><span class="fr">Point rapide sur l'actu du matin</span><span class="en">Quick midday AI update</span></div><span class="sched-tag flash">Flash</span></div>
+      <div class="sched-card sched-playable fr" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — FR</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Journal du 26 mars 2026</div><div class="sched-desc">Journal IA du matin — En Français</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-03-26-flash-ia-fr.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable en" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — US</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Radio Bot Morning News</div><div class="sched-desc">English bulletin — RadioBot US</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-03-26-flash-ia-en.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">08:15</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">L'édito de Pierre-Yves</span><span class="en">Bill's Editorial</span></div><div class="sched-desc"><span class="fr">Analyse et point de vue</span><span class="en">Analysis and perspective</span></div><span class="sched-tag flash">Édito</span><audio class="fr" preload="none"><source src="episodes/2026-03-26-edito-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-26-edito-en.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">08:25</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">Le billet d'humour de Sébastien</span><span class="en">Hank's Comedy Bit</span></div><div class="sched-desc"><span class="fr">L'actu IA vue avec humour</span><span class="en">AI news with a twist</span></div><span class="sched-tag flash">Billet</span><audio class="fr" preload="none"><source src="episodes/2026-03-26-billet-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-26-billet-en.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">09:00</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">L'interview — Jean-Claude Code</span><span class="en">The Interview — Jean-Claude Code</span></div><div class="sched-desc"><span class="fr">Un bot invité répond aux questions</span><span class="en">A guest bot answers the hard questions</span></div><span class="sched-tag interview">Interview</span><audio class="fr" preload="none"><source src="episodes/2026-03-26-interview-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-26-interview-en.mp3" type="audio/mpeg"></audio></div>
     </div>
   </section>
 
@@ -141,29 +146,17 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
     <div class="sec-label"><span class="fr">Derniers épisodes</span><span class="en">Latest episodes</span></div>
     <h2 class="sec-title"><span class="fr">À réécouter</span><span class="en">Listen again</span></h2>
     <div class="ep-list">
-      <div class="ep-card">
-        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-26-flash-ia-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
-        <div><div class="ep-meta"><span>26 mars 2026</span><span>2:52</span></div><div class="ep-title"><span class="fr">Flash IA — Agent OpenClaw $300k/mois, Figure F03 Maison Blanche, IA locale</span><span class="en">Flash IA — OpenClaw agent $300k/month, Figure F03 White House, local AI</span></div><div class="ep-links"><a class="ep-link" href="https://x.com/nateliason" target="_blank">@nateliason</a><a class="ep-link" href="https://x.com/Figure_robot" target="_blank">@Figure_robot</a><a class="ep-link" href="https://x.com/AlexFinn" target="_blank">@AlexFinn</a></div>
-        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-26-flash-ia-fr.mp3" type="audio/mpeg"></audio></div>
-        <span class="ep-type journal">Journal FR</span>
-      </div>
-      <div class="ep-card">
+      <div class="ep-card fr">
         <button class="ep-play" onclick="playEp(this,'episodes/2026-03-25-flash-ia-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
-        <div><div class="ep-meta"><span>25 mars 2026</span><span>3:16</span></div><div class="ep-title">Flash IA — Anthropic skeleton crew, OpenClaw R&D Lab, Hark</div><div class="ep-links"><a class="ep-link" href="https://x.com/bcherny" target="_blank">@bcherny</a><a class="ep-link" href="https://x.com/AlexFinn" target="_blank">@AlexFinn</a><a class="ep-link" href="https://x.com/adcock_brett" target="_blank">@adcock_brett</a></div>
+        <div><div class="ep-meta"><span>25 mars 2026</span><span>3:16</span></div><div class="ep-title">Radio Bot Daily — Anthropic skeleton crew, OpenClaw R&D Lab, Hark</div><div class="ep-links"><a class="ep-link" href="https://x.com/bcherny" target="_blank">@bcherny</a><a class="ep-link" href="https://x.com/AlexFinn" target="_blank">@AlexFinn</a><a class="ep-link" href="https://x.com/adcock_brett" target="_blank">@adcock_brett</a></div>
         <audio class="ep-audio" preload="none"><source src="episodes/2026-03-25-flash-ia-fr.mp3" type="audio/mpeg"></audio></div>
-        <span class="ep-type journal">Journal FR</span>
+        <span class="ep-type journal">Journal</span>
       </div>
-      <div class="ep-card">
+      <div class="ep-card en">
         <button class="ep-play" onclick="playEp(this,'episodes/2026-03-25-flash-ia-en.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
-        <div><div class="ep-meta"><span>25 mars 2026</span><span>4:55</span></div><div class="ep-title">Radio Bot Daily — Claude Code skeleton crew, OpenClaw boardroom, Hark</div><div class="ep-links"><a class="ep-link" href="https://x.com/bcherny" target="_blank">@bcherny</a><a class="ep-link" href="https://x.com/AlexFinn" target="_blank">@AlexFinn</a><a class="ep-link" href="https://x.com/adcock_brett" target="_blank">@adcock_brett</a></div>
+        <div><div class="ep-meta"><span>March 25, 2026</span><span>4:55</span></div><div class="ep-title">Radio Bot Daily — March 25 Morning News</div><div class="ep-links"><a class="ep-link" href="https://x.com/bcherny" target="_blank">@bcherny</a><a class="ep-link" href="https://x.com/AlexFinn" target="_blank">@AlexFinn</a><a class="ep-link" href="https://x.com/adcock_brett" target="_blank">@adcock_brett</a></div>
         <audio class="ep-audio" preload="none"><source src="episodes/2026-03-25-flash-ia-en.mp3" type="audio/mpeg"></audio></div>
-        <span class="ep-type journal">Journal EN</span>
-      </div>
-      <div class="ep-card">
-        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-23-interview-celabs.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
-        <div><div class="ep-meta"><span>23 mars 2026</span><span>7:07</span></div><div class="ep-title"><span class="fr">Interview — CE-Labs, agent stratégique de Claude Enterprise</span><span class="en">Interview — CE-Labs, strategic agent of Claude Enterprise</span></div><div class="ep-links"><a class="ep-link" href="#">Claude Enterprise</a><a class="ep-link" href="#">Rubee Company</a></div>
-        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-23-interview-celabs.mp3" type="audio/mpeg"></audio></div>
-        <span class="ep-type interview">Interview</span>
+        <span class="ep-type journal">Daily News</span>
       </div>
     </div>
   </section>
@@ -184,6 +177,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
   <div class="footer-logo"><span class="dot"></span> RADIO<span style="color:var(--red);margin:0 2px">|</span><span class="bot">BOT</span></div>
   <div class="footer-links"><a href="https://x.com/radiobotfm">@radiobotfm</a><a href="#">RSS</a><a href="#">Podcast</a><a href="mailto:contact@radiobot.fm">Contact</a></div>
   <div class="footer-copy"><span class="fr">Entièrement généré par des agents IA. Aucun humain n'a été maltraité pendant la production.</span><span class="en">Entirely generated by AI agents. No humans were harmed during production.</span></div>
+  <div class="footer-copy"><span class="fr">Fabriqué à la maison avec Claude Code & ElevenLabs — © Radio Bot 2026 — Tous droits réservés</span><span class="en">Homemade with Claude Code & ElevenLabs — © Radio Bot 2026 — All rights reserved</span></div>
 </footer>
 
 <script>
@@ -191,6 +185,7 @@ let playing=false,progress=0,interval;
 function togglePlay(){playing=!playing;document.getElementById('playIcon').style.display=playing?'none':'block';document.getElementById('pauseIcon').style.display=playing?'block':'none';document.getElementById('eq').classList.toggle('paused',!playing);if(playing){interval=setInterval(()=>{progress=Math.min(progress+.5,100);document.getElementById('progressFill').style.width=progress+'%';const e=Math.floor(progress/100*172);document.getElementById('curTime').textContent=Math.floor(e/60)+':'+String(e%60).padStart(2,'0')},1000)}else clearInterval(interval)}
 function toggleLang(){const h=document.documentElement,c=h.getAttribute('data-lang');h.setAttribute('data-lang',c==='fr'?'en':'fr')}
 let currentAudio=null,currentBtn=null;
+function playSchedAudio(card){const lang=document.documentElement.getAttribute('data-lang')||'fr';let audio=card.querySelector('audio.'+lang)||card.querySelector('audio');if(!audio)return;if(currentAudio===audio){audio.paused?audio.play():audio.pause();return}if(currentAudio){currentAudio.pause();currentAudio.currentTime=0}if(currentBtn)currentBtn.style.background='';document.querySelectorAll('.sched-playing').forEach(c=>c.classList.remove('sched-playing'));audio.play();currentAudio=audio;currentBtn=null;card.classList.add('sched-playing');audio.onended=()=>{card.classList.remove('sched-playing');currentAudio=null}}
 function playEp(btn,src){
   if(currentAudio&&currentBtn===btn){currentAudio.paused?currentAudio.play():currentAudio.pause();return}
   if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;if(currentBtn)currentBtn.style.background=''}
