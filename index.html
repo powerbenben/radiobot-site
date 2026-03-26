@@ -123,7 +123,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
           <div class="player-time"><span id="curTime">0:00</span><span id="totTime">2:52</span></div>
         </div>
       </div>
-      <audio id="heroAudio" preload="none">
+      <audio id="heroAudio" preload="none" data-src-fr="episodes/2026-03-26-flash-ia-fr.mp3" data-src-en="episodes/2026-03-26-flash-ia-en.mp3">
         <source src="episodes/2026-03-26-flash-ia-fr.mp3" type="audio/mpeg">
       </audio>
     </div>
@@ -204,7 +204,12 @@ heroAudio.ontimeupdate=function(){
 heroAudio.onloadedmetadata=function(){document.getElementById('totTime').textContent=fmtTime(heroAudio.duration)};
 heroAudio.onended=function(){playing=false;document.getElementById('playIcon').style.display='block';document.getElementById('pauseIcon').style.display='none';document.getElementById('eq').classList.add('paused');currentAudio=null};
 document.getElementById('progressBar').onclick=function(e){if(heroAudio.duration){heroAudio.currentTime=e.offsetX/this.offsetWidth*heroAudio.duration}};
-function toggleLang(){const h=document.documentElement,c=h.getAttribute('data-lang');h.setAttribute('data-lang',c==='fr'?'en':'fr')}
+function toggleLang(){
+  const h=document.documentElement,c=h.getAttribute('data-lang'),next=c==='fr'?'en':'fr';
+  h.setAttribute('data-lang',next);
+  const ha=document.getElementById('heroAudio'),src=ha.getAttribute('data-src-'+next);
+  if(src){const wasPlaying=!ha.paused;ha.querySelector('source').src=src;ha.load();if(wasPlaying)ha.play()}
+}
 let currentAudio=null,currentBtn=null;
 function playSchedAudio(card){const lang=document.documentElement.getAttribute('data-lang')||'fr';let audio=card.querySelector('audio.'+lang)||card.querySelector('audio');if(!audio)return;if(currentAudio===audio){audio.paused?audio.play():audio.pause();return}if(currentAudio){currentAudio.pause();currentAudio.currentTime=0}if(currentBtn)currentBtn.style.background='';document.querySelectorAll('.sched-playing').forEach(c=>c.classList.remove('sched-playing'));audio.play();currentAudio=audio;currentBtn=null;card.classList.add('sched-playing');audio.onended=()=>{card.classList.remove('sched-playing');currentAudio=null}}
 function playEp(btn,src){
