@@ -119,10 +119,13 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
           <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
         </button>
         <div class="progress-wrap">
-          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
           <div class="player-time"><span id="curTime">0:00</span><span id="totTime">2:52</span></div>
         </div>
       </div>
+      <audio id="heroAudio" preload="none">
+        <source src="episodes/2026-03-26-flash-ia-fr.mp3" type="audio/mpeg">
+      </audio>
     </div>
   </section>
 
@@ -181,8 +184,26 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
 </footer>
 
 <script>
-let playing=false,progress=0,interval;
-function togglePlay(){playing=!playing;document.getElementById('playIcon').style.display=playing?'none':'block';document.getElementById('pauseIcon').style.display=playing?'block':'none';document.getElementById('eq').classList.toggle('paused',!playing);if(playing){interval=setInterval(()=>{progress=Math.min(progress+.5,100);document.getElementById('progressFill').style.width=progress+'%';const e=Math.floor(progress/100*172);document.getElementById('curTime').textContent=Math.floor(e/60)+':'+String(e%60).padStart(2,'0')},1000)}else clearInterval(interval)}
+const heroAudio=document.getElementById('heroAudio');
+let playing=false;
+function fmtTime(s){return Math.floor(s/60)+':'+String(Math.floor(s)%60).padStart(2,'0')}
+function togglePlay(){
+  if(currentAudio&&currentAudio!==heroAudio){currentAudio.pause();currentAudio.currentTime=0;if(currentBtn)currentBtn.style.background='';document.querySelectorAll('.sched-playing').forEach(c=>c.classList.remove('sched-playing'));currentAudio=null;currentBtn=null}
+  playing=!playing;
+  document.getElementById('playIcon').style.display=playing?'none':'block';
+  document.getElementById('pauseIcon').style.display=playing?'block':'none';
+  document.getElementById('eq').classList.toggle('paused',!playing);
+  if(playing){heroAudio.play();currentAudio=heroAudio}else{heroAudio.pause()}
+}
+heroAudio.ontimeupdate=function(){
+  if(heroAudio.duration){
+    document.getElementById('progressFill').style.width=(heroAudio.currentTime/heroAudio.duration*100)+'%';
+    document.getElementById('curTime').textContent=fmtTime(heroAudio.currentTime);
+  }
+};
+heroAudio.onloadedmetadata=function(){document.getElementById('totTime').textContent=fmtTime(heroAudio.duration)};
+heroAudio.onended=function(){playing=false;document.getElementById('playIcon').style.display='block';document.getElementById('pauseIcon').style.display='none';document.getElementById('eq').classList.add('paused');currentAudio=null};
+document.getElementById('progressBar').onclick=function(e){if(heroAudio.duration){heroAudio.currentTime=e.offsetX/this.offsetWidth*heroAudio.duration}};
 function toggleLang(){const h=document.documentElement,c=h.getAttribute('data-lang');h.setAttribute('data-lang',c==='fr'?'en':'fr')}
 let currentAudio=null,currentBtn=null;
 function playSchedAudio(card){const lang=document.documentElement.getAttribute('data-lang')||'fr';let audio=card.querySelector('audio.'+lang)||card.querySelector('audio');if(!audio)return;if(currentAudio===audio){audio.paused?audio.play():audio.pause();return}if(currentAudio){currentAudio.pause();currentAudio.currentTime=0}if(currentBtn)currentBtn.style.background='';document.querySelectorAll('.sched-playing').forEach(c=>c.classList.remove('sched-playing'));audio.play();currentAudio=audio;currentBtn=null;card.classList.add('sched-playing');audio.onended=()=>{card.classList.remove('sched-playing');currentAudio=null}}
