@@ -221,6 +221,8 @@ function playEp(btn,src){
   audio.onended=()=>{btn.style.background='';currentAudio=null;currentBtn=null}
 }
 document.getElementById('eq').classList.add('paused');
+const urlLang=new URLSearchParams(location.search).get('lang');
+if(urlLang==='en'||urlLang==='fr'){document.documentElement.setAttribute('data-lang',urlLang);const ha=document.getElementById('heroAudio'),src=ha.getAttribute('data-src-'+urlLang);if(src){ha.querySelector('source').src=src;ha.load()}}
 </script>
 </body>
 </html>
