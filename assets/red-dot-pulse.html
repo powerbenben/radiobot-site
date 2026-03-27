@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body { margin: 0; background: #000; display: flex; align-items: center; justify-content: center; width: 1080px; height: 1080px; }
+.dot {
+  width: 120px;
+  height: 120px;
+  background: #ff3d3d;
+  border-radius: 50%;
+  box-shadow: 0 0 80px rgba(255,61,61,.6), 0 0 160px rgba(255,61,61,.25);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 80px rgba(255,61,61,.6), 0 0 160px rgba(255,61,61,.25); }
+  50% { opacity: .4; transform: scale(.92); box-shadow: 0 0 40px rgba(255,61,61,.3), 0 0 80px rgba(255,61,61,.1); }
+}
+</style>
+</head>
+<body><div class="dot"></div></body>
+</html>
