@@ -114,7 +114,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
         <div class="eq" id="eq"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
       <div class="player-show"><span class="fr">Radio Bot Daily — La Matinale</span><span class="en">IA Morning News — Full Show</span></div>
-      <div class="player-ep"><span class="fr">Attaque supply chain litellm, Anthropic multi-agent, OpenAI Codex plugins — 27 mars 2026</span><span class="en">litellm supply chain attack, Anthropic multi-agent harness, OpenAI Codex plugins — March 27, 2026</span></div>
+      <div class="player-ep"><span class="fr">Mistral Voxtral TTS, Claude Code auto-fix cloud, modèles locaux 24/7 — 30 mars 2026</span><span class="en">Mistral Voxtral TTS, Claude Code cloud auto-fix, local models 24/7 — March 30, 2026</span></div>
       <div class="player-controls">
         <button class="play-btn" id="playBtn" onclick="togglePlay()">
           <svg id="playIcon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
@@ -122,11 +122,11 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
         </button>
         <div class="progress-wrap">
           <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-          <div class="player-time"><span id="curTime">0:00</span><span id="totTime">5:59</span></div>
+          <div class="player-time"><span id="curTime">0:00</span><span id="totTime">5:39</span></div>
         </div>
       </div>
-      <audio id="heroAudio" preload="none" data-src-fr="episodes/2026-03-27-matinale-fr.mp3" data-src-en="episodes/2026-03-27-matinale-en.mp3">
-        <source src="episodes/2026-03-27-matinale-en.mp3" type="audio/mpeg">
+      <audio id="heroAudio" preload="none" data-src-fr="episodes/2026-03-30-matinale-fr.mp3" data-src-en="episodes/2026-03-30-matinale-en.mp3">
+        <source src="episodes/2026-03-30-matinale-en.mp3" type="audio/mpeg">
       </audio>
     </div>
   </section>
@@ -137,10 +137,10 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
     <div class="sec-label"><span class="fr">Programme</span><span class="en">Schedule</span></div>
     <h2 class="sec-title"><span class="fr">Aujourd'hui sur Radio Bot</span><span class="en">Today on Radio Bot</span></h2>
     <div class="schedule-grid">
-      <div class="sched-card sched-playable fr" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — FR</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Journal du 27 mars 2026</div><div class="sched-desc">Journal IA du matin — En Français</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-03-27-flash-ia-fr.mp3" type="audio/mpeg"></audio></div>
-      <div class="sched-card sched-playable en" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — US</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Radio Bot Morning News</div><div class="sched-desc">English bulletin — RadioBot US</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-03-27-flash-ia-en.mp3" type="audio/mpeg"></audio></div>
-      <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">08:15</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">L'édito de Pierre-Yves</span><span class="en">Bill's Editorial</span></div><div class="sched-desc"><span class="fr">Analyse et point de vue</span><span class="en">Analysis and perspective</span></div><span class="sched-tag flash">Édito</span><audio class="fr" preload="none"><source src="episodes/2026-03-27-edito-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-27-edito-en.mp3" type="audio/mpeg"></audio></div>
-      <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">08:25</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">Le billet d'humour de Sébastien</span><span class="en">Hank's Comedy Bit</span></div><div class="sched-desc"><span class="fr">L'actu IA vue avec humour</span><span class="en">AI news with a twist</span></div><span class="sched-tag flash">Billet</span><audio class="fr" preload="none"><source src="episodes/2026-03-27-billet-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-27-billet-en.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable fr" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — FR</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Journal du 30 mars 2026</div><div class="sched-desc">Journal IA du matin — En Français</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-03-30-flash-ia-fr.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable en" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — US</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Radio Bot Morning News</div><div class="sched-desc">English bulletin — RadioBot US</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-03-30-flash-ia-en.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">08:15</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">L'édito de Pierre-Yves</span><span class="en">Bill's Editorial</span></div><div class="sched-desc"><span class="fr">Analyse et point de vue</span><span class="en">Analysis and perspective</span></div><span class="sched-tag flash">Édito</span><audio class="fr" preload="none"><source src="episodes/2026-03-30-edito-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-30-edito-en.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">08:25</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">Le billet d'humour de Sébastien</span><span class="en">Hank's Comedy Bit</span></div><div class="sched-desc"><span class="fr">L'actu IA vue avec humour</span><span class="en">AI news with a twist</span></div><span class="sched-tag flash">Billet</span><audio class="fr" preload="none"><source src="episodes/2026-03-30-billet-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-30-billet-en.mp3" type="audio/mpeg"></audio></div>
     </div>
   </section>
 
@@ -150,6 +150,42 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
     <div class="sec-label"><span class="fr">Derniers épisodes</span><span class="en">Latest episodes</span></div>
     <h2 class="sec-title"><span class="fr">À réécouter</span><span class="en">Listen again</span></h2>
     <div class="ep-list">
+      <div class="ep-card fr">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-27-flash-ia-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>27 mars 2026</span><span>2:59</span></div><div class="ep-title">Radio Bot Daily — Attaque supply chain litellm, Anthropic multi-agent, OpenAI Codex plugins</div><div class="ep-links"><a class="ep-link" href="https://x.com/kaboroevsky" target="_blank" rel="noopener noreferrer">@kaboroevsky</a><a class="ep-link" href="https://x.com/AnthropicAI" target="_blank" rel="noopener noreferrer">@AnthropicAI</a><a class="ep-link" href="https://x.com/OpenAI" target="_blank" rel="noopener noreferrer">@OpenAI</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-27-flash-ia-fr.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type journal">Journal</span>
+      </div>
+      <div class="ep-card en">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-27-flash-ia-en.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>March 27, 2026</span><span>3:07</span></div><div class="ep-title">Radio Bot Daily — March 27 Morning News</div><div class="ep-links"><a class="ep-link" href="https://x.com/kaboroevsky" target="_blank" rel="noopener noreferrer">@kaboroevsky</a><a class="ep-link" href="https://x.com/AnthropicAI" target="_blank" rel="noopener noreferrer">@AnthropicAI</a><a class="ep-link" href="https://x.com/OpenAI" target="_blank" rel="noopener noreferrer">@OpenAI</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-27-flash-ia-en.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type journal">Daily News</span>
+      </div>
+      <div class="ep-card fr">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-27-edito-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>27 mars 2026</span><span>1:32</span></div><div class="ep-title">L'édito de Pierre-Yves — Claude Code auto-mode, la confiance calibrée</div><div class="ep-links"><a class="ep-link" href="https://x.com/AnthropicAI" target="_blank" rel="noopener noreferrer">@AnthropicAI</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-27-edito-fr.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type flash">Édito</span>
+      </div>
+      <div class="ep-card en">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-27-edito-en.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>March 27, 2026</span><span>1:56</span></div><div class="ep-title">Bill's Editorial — Claude Code auto-mode, calibrated trust</div><div class="ep-links"><a class="ep-link" href="https://x.com/AnthropicAI" target="_blank" rel="noopener noreferrer">@AnthropicAI</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-27-edito-en.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type flash">Editorial</span>
+      </div>
+      <div class="ep-card fr">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-27-billet-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>27 mars 2026</span><span>1:07</span></div><div class="ep-title">Le billet de Sébastien — Le vibe coding arrive chez les designers</div><div class="ep-links"><a class="ep-link" href="#">Vibe coding</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-27-billet-fr.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type flash">Billet</span>
+      </div>
+      <div class="ep-card en">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-27-billet-en.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>March 27, 2026</span><span>1:14</span></div><div class="ep-title">Hank's Comedy Bit — Vibe coding comes for the designers</div><div class="ep-links"><a class="ep-link" href="#">Vibe coding</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-27-billet-en.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type flash">Comedy</span>
+      </div>
       <div class="ep-card fr">
         <button class="ep-play" onclick="playEp(this,'episodes/2026-03-26-flash-ia-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
         <div><div class="ep-meta"><span>26 mars 2026</span><span>2:52</span></div><div class="ep-title">Radio Bot Daily — Agent OpenClaw $300k/mois, Figure F03, IA locale</div><div class="ep-links"><a class="ep-link" href="https://x.com/nateliason" target="_blank" rel="noopener noreferrer">@nateliason</a><a class="ep-link" href="https://x.com/Figure_robot" target="_blank" rel="noopener noreferrer">@Figure_robot</a><a class="ep-link" href="https://x.com/AlexFinn" target="_blank" rel="noopener noreferrer">@AlexFinn</a></div>
