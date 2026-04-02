@@ -114,7 +114,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
         <div class="eq" id="eq"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
       <div class="player-show"><span class="fr">Radio Bot Daily — La Matinale</span><span class="en">IA Morning News — Full Show</span></div>
-      <div class="player-ep"><span class="fr">Mistral 830M€ datacenter, Shopify vitrines agentiques, MLB arbitrage IA — 31 mars 2026</span><span class="en">Mistral €830M data center, Shopify agentic storefronts, MLB AI umpire — March 31, 2026</span></div>
+      <div class="player-ep"><span class="fr">OpenAI 122Md$ levée record, Claude Code no-flicker, BotQ production série — 2 avril 2026</span><span class="en">Mistral €830M data center, Shopify agentic storefronts, MLB AI umpire — March 31, 2026</span></div>
       <div class="player-controls">
         <button class="play-btn" id="playBtn" onclick="togglePlay()">
           <svg id="playIcon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
@@ -125,7 +125,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
           <div class="player-time"><span id="curTime">0:00</span><span id="totTime">5:28</span></div>
         </div>
       </div>
-      <audio id="heroAudio" preload="none" data-src-fr="episodes/2026-03-31-matinale-fr.mp3" data-src-en="episodes/2026-03-31-matinale-en.mp3">
+      <audio id="heroAudio" preload="none" data-src-fr="episodes/2026-04-02-matinale-fr.mp3" data-src-en="episodes/2026-03-31-matinale-en.mp3">
         <source src="episodes/2026-03-31-matinale-en.mp3" type="audio/mpeg">
       </audio>
     </div>
@@ -137,7 +137,7 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
     <div class="sec-label"><span class="fr">Programme</span><span class="en">Schedule</span></div>
     <h2 class="sec-title"><span class="fr">Aujourd'hui sur Radio Bot</span><span class="en">Today on Radio Bot</span></h2>
     <div class="schedule-grid">
-      <div class="sched-card sched-playable fr" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — FR</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Journal du 31 mars 2026</div><div class="sched-desc">Journal IA du matin — En Français</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-03-31-flash-ia-fr.mp3" type="audio/mpeg"></audio></div>
+      <div class="sched-card sched-playable fr" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — FR</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Journal du 2 avril 2026</div><div class="sched-desc">Journal IA du matin — En Français</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-04-02-matinale-fr.mp3" type="audio/mpeg"></audio></div>
       <div class="sched-card sched-playable en" onclick="playSchedAudio(this)"><div class="sched-time">08:00 — US</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>Radio Bot Morning News</div><div class="sched-desc">English bulletin — RadioBot US</div><span class="sched-tag journal">Journal</span><audio preload="none"><source src="episodes/2026-03-31-flash-ia-en.mp3" type="audio/mpeg"></audio></div>
       <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">08:15</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">L'édito de Pierre-Yves</span><span class="en">Bill's Editorial</span></div><div class="sched-desc"><span class="fr">Analyse et point de vue</span><span class="en">Analysis and perspective</span></div><span class="sched-tag flash">Édito</span><audio class="fr" preload="none"><source src="episodes/2026-03-31-edito-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-31-edito-en.mp3" type="audio/mpeg"></audio></div>
       <div class="sched-card sched-playable" onclick="playSchedAudio(this)"><div class="sched-time">08:25</div><div class="sched-name"><svg class="sched-play-icon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg><span class="fr">Le billet d'humour de Sébastien</span><span class="en">Hank's Comedy Bit</span></div><div class="sched-desc"><span class="fr">L'actu IA vue avec humour</span><span class="en">AI news with a twist</span></div><span class="sched-tag flash">Billet</span><audio class="fr" preload="none"><source src="episodes/2026-03-31-billet-fr.mp3" type="audio/mpeg"></audio><audio class="en" preload="none"><source src="episodes/2026-03-31-billet-en.mp3" type="audio/mpeg"></audio></div>
@@ -150,6 +150,42 @@ footer{border-top:1px solid var(--border);padding:32px;max-width:900px;margin:0 
     <div class="sec-label"><span class="fr">Derniers épisodes</span><span class="en">Latest episodes</span></div>
     <h2 class="sec-title"><span class="fr">À réécouter</span><span class="en">Listen again</span></h2>
     <div class="ep-list">
+      <div class="ep-card fr">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-31-flash-ia-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>31 mars 2026</span><span>3:12</span></div><div class="ep-title">Radio Bot Daily — Mistral 830M€ datacenter, Shopify vitrines agentiques, MLB arbitrage IA</div><div class="ep-links"><a class="ep-link" href="https://x.com/MistralAI" target="_blank" rel="noopener noreferrer">@MistralAI</a><a class="ep-link" href="https://x.com/Shopify" target="_blank" rel="noopener noreferrer">@Shopify</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-31-flash-ia-fr.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type journal">Journal</span>
+      </div>
+      <div class="ep-card en">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-31-flash-ia-en.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>March 31, 2026</span><span>3:18</span></div><div class="ep-title">Radio Bot Daily — Mistral €830M data center, Shopify agentic storefronts, MLB AI umpire</div><div class="ep-links"><a class="ep-link" href="https://x.com/MistralAI" target="_blank" rel="noopener noreferrer">@MistralAI</a><a class="ep-link" href="https://x.com/Shopify" target="_blank" rel="noopener noreferrer">@Shopify</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-31-flash-ia-en.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type journal">Daily News</span>
+      </div>
+      <div class="ep-card fr">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-31-edito-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>31 mars 2026</span><span>1:20</span></div><div class="ep-title">L'édito de Pierre-Yves — Shopify et les vitrines agentiques</div><div class="ep-links"><a class="ep-link" href="https://x.com/Shopify" target="_blank" rel="noopener noreferrer">@Shopify</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-31-edito-fr.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type flash">Édito</span>
+      </div>
+      <div class="ep-card en">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-31-edito-en.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>March 31, 2026</span><span>1:26</span></div><div class="ep-title">Bill's Editorial — Shopify and agentic storefronts</div><div class="ep-links"><a class="ep-link" href="https://x.com/Shopify" target="_blank" rel="noopener noreferrer">@Shopify</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-31-edito-en.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type flash">Editorial</span>
+      </div>
+      <div class="ep-card fr">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-31-billet-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>31 mars 2026</span><span>1:15</span></div><div class="ep-title">Le billet de Sébastien — MLB, quand l'IA remplace l'arbitre</div><div class="ep-links"><a class="ep-link" href="#">MLB</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-31-billet-fr.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type flash">Billet</span>
+      </div>
+      <div class="ep-card en">
+        <button class="ep-play" onclick="playEp(this,'episodes/2026-03-31-billet-en.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
+        <div><div class="ep-meta"><span>March 31, 2026</span><span>1:22</span></div><div class="ep-title">Hank's Comedy Bit — MLB, when AI replaces the umpire</div><div class="ep-links"><a class="ep-link" href="#">MLB</a></div>
+        <audio class="ep-audio" preload="none"><source src="episodes/2026-03-31-billet-en.mp3" type="audio/mpeg"></audio></div>
+        <span class="ep-type flash">Comedy</span>
+      </div>
       <div class="ep-card fr">
         <button class="ep-play" onclick="playEp(this,'episodes/2026-03-30-flash-ia-fr.mp3')"><svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg></button>
         <div><div class="ep-meta"><span>30 mars 2026</span><span>2:46</span></div><div class="ep-title">Radio Bot Daily — Mistral Voxtral TTS, Claude Code auto-fix cloud, modèles locaux 24/7</div><div class="ep-links"><a class="ep-link" href="https://x.com/MistralAI" target="_blank" rel="noopener noreferrer">@MistralAI</a><a class="ep-link" href="https://x.com/AnthropicAI" target="_blank" rel="noopener noreferrer">@AnthropicAI</a></div>
