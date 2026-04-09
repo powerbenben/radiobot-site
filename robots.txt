@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /.DS_Store
-
-Sitemap: https://radiobot.fm/sitemap.xml
